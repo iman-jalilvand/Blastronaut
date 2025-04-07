@@ -10,12 +10,12 @@
 
 ## 🎮 Gameplay
 
-- 🧑‍🚀 Control your rocket with **WASD**
-- 🎯 Aim and rotate with the mouse
-- 🔫 Left-click to shoot
-- 💥 Dodge incoming asteroids
-- 🧱 Survive as long as you can while racking up points
-- ❤️ 3 lives, and you're toast!
+- Control your rocket with **WASD**
+- Aim and rotate with the mouse
+- Left-click to shoot
+- Dodge incoming asteroids
+- Survive as long as you can while racking up points
+- 3 lives, and you're toast!
 
 ---
 
