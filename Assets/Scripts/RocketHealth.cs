@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class RocketHealth : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class RocketHealth : MonoBehaviour
     public GameObject hitEffect;
 
     [Header("UI")]
-    public Slider healthSlider; // 🔴 Reference to the health bar slider
+    public Slider healthSlider; //  Reference to the health bar slider
 
     private void Start()
     {
@@ -52,7 +53,10 @@ public class RocketHealth : MonoBehaviour
             Instantiate(explosionEffect, transform.position, transform.rotation);
         }
 
-        Destroy(gameObject);
-        Debug.Log("GAME OVER!");
+        // Save final score
+        GameManager.Instance.SaveFinalScore();
+
+        // Load Game Over screen
+        SceneManager.LoadScene("GameOver");
     }
 }

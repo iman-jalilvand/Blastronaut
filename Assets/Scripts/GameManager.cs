@@ -3,6 +3,8 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    private int finalScore = 0; // Store score between scenes
+
     public static GameManager Instance; // Singleton pattern
 
     private int score = 0; // Score variable
@@ -40,5 +42,15 @@ public class GameManager : MonoBehaviour
         {
             scoreText.text = "Score: " + score;
         }
+    }
+
+    public void SaveFinalScore()
+    {
+        finalScore = score;
+    }
+
+    public int GetFinalScore()
+    {
+        return finalScore;
     }
 }
