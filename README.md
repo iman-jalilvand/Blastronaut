@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="Assets/UI/logo.png" width="200" alt="Blastronaut logo" />
+  <img src="Assets/UI/blastronaut_logo.png" width="300" alt="Blastronaut Logo" />
 </p>
 
 # 🚀 Blastronaut
@@ -24,3 +24,9 @@
 1. Clone the repo  
    ```bash
    git clone https://github.com/your-username/blastronaut.git
+
+2. Open the project in Unity 2021.3 LTS or newer
+
+3. Load the Tutorial scene
+
+4. Press ▶️ Play and start blasting!
