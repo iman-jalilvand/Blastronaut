@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   rotateSpeed: 500
-  detectionRadius: 0.5
+  detectionRadius: 0.1
   explosionEffect: {fileID: 3429976315144177062, guid: ca06f451c8ebd481d920cdba67f9c15c, type: 3}
 --- !u!96 &4260126851212392806
 TrailRenderer:
