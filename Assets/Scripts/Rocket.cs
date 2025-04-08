@@ -76,7 +76,12 @@ public class Rocket : MonoBehaviour
 
         if (PauseMenu.isPaused) return; // Prevent shooting while paused
 
-        
+        if (InputManager.Instance.SwitchWeapon)
+        {
+            currentMissileType = (currentMissileType == MissileType.Normal) ? MissileType.Homing : MissileType.Normal;
+            Debug.Log("Switched to: " + currentMissileType);
+        }
+
         if (InputManager.Instance.IsShooting)
         {
             if (currentMissileType == MissileType.Normal)
@@ -91,15 +96,11 @@ public class Rocket : MonoBehaviour
                     GameObject missile = Instantiate(homingMissilePrefab, bulletSpawnRef.position, bulletSpawnRef.rotation);
                     missile.GetComponent<HomingMissile>().SetTarget(target.transform);
                 }
+                else
+                {
+                    Debug.Log("❌ No target locked.");
+                }
             }
         }
-
-        // Switch between normal and homing missiles
-        if (InputManager.Instance.SwitchWeapon)
-        {
-            currentMissileType = (currentMissileType == MissileType.Normal) ? MissileType.Homing : MissileType.Normal;
-            Debug.Log("Switched to: " + currentMissileType);
-        }
-
     }
 }
