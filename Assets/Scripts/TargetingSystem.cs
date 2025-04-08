@@ -2,34 +2,30 @@ using UnityEngine;
 
 public class TargetingSystem : MonoBehaviour
 {
-    public RectTransform targetBox;
-    public GameObject lockBoxPrefab;
-    public Canvas canvas;
-    public Camera mainCam;
-    public float lockTime = 3f;
+     public float lockTime = 3f;
+    public float lockAngle = 30f;
+    public float lockDistance = 100f;
 
     private float lockTimer = 0f;
     private GameObject lockedTarget;
     private GameObject currentTarget;
-    private GameObject lockBoxInstance;
 
     void Update()
     {
-        currentTarget = FindAsteroidInTargetBox();
+        currentTarget = FindAsteroidInFront();
 
         if (currentTarget != null)
         {
             if (currentTarget == lockedTarget)
             {
-                UpdateLockUI();
+                // Already locked
+                return;
             }
-            else
+
+            lockTimer += Time.deltaTime;
+            if (lockTimer >= lockTime)
             {
-                lockTimer += Time.deltaTime;
-                if (lockTimer >= lockTime)
-                {
-                    LockOn(currentTarget);
-                }
+                LockOn(currentTarget);
             }
         }
         else
@@ -38,44 +34,38 @@ public class TargetingSystem : MonoBehaviour
         }
     }
 
-    GameObject FindAsteroidInTargetBox()
+    GameObject FindAsteroidInFront()
     {
         GameObject[] asteroids = GameObject.FindGameObjectsWithTag("Asteroid");
-        foreach (GameObject asteroid in asteroids)
+        GameObject best = null;
+        float closestAngle = lockAngle;
+
+        foreach (var asteroid in asteroids)
         {
-            Vector3 screenPos = mainCam.WorldToScreenPoint(asteroid.transform.position);
-            if (RectTransformUtility.RectangleContainsScreenPoint(targetBox, screenPos, mainCam))
-                return asteroid;
+            Vector3 dir = asteroid.transform.position - transform.position;
+            float angle = Vector3.Angle(transform.forward, dir);
+
+            if (angle < closestAngle && dir.magnitude < lockDistance)
+            {
+                closestAngle = angle;
+                best = asteroid;
+            }
         }
-        return null;
+
+        return best;
     }
 
     void LockOn(GameObject target)
     {
         lockedTarget = target;
         lockTimer = 0f;
-
-        if (lockBoxInstance == null)
-            lockBoxInstance = Instantiate(lockBoxPrefab, canvas.transform);
-    }
-
-    void UpdateLockUI()
-    {
-        if (lockBoxInstance != null && lockedTarget != null)
-        {
-            Vector3 screenPos = mainCam.WorldToScreenPoint(lockedTarget.transform.position);
-            lockBoxInstance.GetComponent<RectTransform>().position = screenPos;
-        }
+        Debug.Log("✅ Locked on: " + target.name);
     }
 
     void ClearLock()
     {
-        lockTimer = 0f;
         lockedTarget = null;
-        if (lockBoxInstance != null)
-        {
-            Destroy(lockBoxInstance);
-        }
+        lockTimer = 0f;
     }
 
     public GameObject GetLockedTarget()
