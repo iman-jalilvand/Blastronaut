@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class TargetingSystem : MonoBehaviour
 {
-     public float lockTime = 3f;
-    public float lockAngle = 30f;
-    public float lockDistance = 100f;
+    public float lockTime = 3f;
+    [SerializeField] private float lockAngle = 12f;   // Smaller cone, like 150px width
+    [SerializeField] private float lockDistance = 50f;
+
 
     private float lockTimer = 0f;
     private GameObject lockedTarget;
