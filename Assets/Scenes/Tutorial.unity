@@ -648,6 +648,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fac1b180b0844430e9d66f7049af9cf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  normalMissilePrefab: {fileID: 0}
+  homingMissilePrefab: {fileID: 0}
+  targetingSystem: {fileID: 0}
   MoveForce: 0.3
   TurnTorque: 0.05
   rocket: {fileID: 270772634}
@@ -726,6 +729,23 @@ MonoBehaviour:
   explosionEffect: {fileID: 1077764763858544660, guid: 095e3cca99912440083bf5bb4a380ae3, type: 3}
   hitEffect: {fileID: 1077764763858544660, guid: 9445507ef88744da0b3c3ce15abfaf5a, type: 3}
   healthSlider: {fileID: 94178469}
+--- !u!114 &270772636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270772629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a3cb200708344714bce979e21f30e8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetBox: {fileID: 0}
+  lockBoxPrefab: {fileID: 0}
+  canvas: {fileID: 0}
+  mainCam: {fileID: 0}
+  lockTime: 3
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -2781,6 +2801,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8854619882081110099, guid: 6ace0503f5f5e6e44831975f9aeed05d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 270772635}
+    - targetCorrespondingSourceObject: {fileID: 8854619882081110099, guid: 6ace0503f5f5e6e44831975f9aeed05d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 270772636}
   m_SourcePrefab: {fileID: 100100000, guid: 6ace0503f5f5e6e44831975f9aeed05d, type: 3}
 --- !u!1 &1500031036
 GameObject:

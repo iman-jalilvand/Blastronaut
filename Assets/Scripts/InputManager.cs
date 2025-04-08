@@ -12,6 +12,8 @@ public class InputManager : MonoBehaviour
     public float VerticalLook { get; private set; }
     public bool IsRotating { get; private set; }
     public bool IsShooting { get; private set; }
+    public bool SwitchWeapon { get; private set; }
+
 
     private void Awake()
     {
@@ -33,5 +35,6 @@ public class InputManager : MonoBehaviour
 
         // Shooting input (Left mouse button)
         IsShooting = Input.GetMouseButtonDown(0);
+        SwitchWeapon = Input.GetKeyDown(KeyCode.E);
     }
 }
