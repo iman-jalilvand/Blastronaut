@@ -2,6 +2,13 @@ using UnityEngine;
 
 public class Rocket : MonoBehaviour
 {
+    public GameObject normalMissilePrefab;
+    public GameObject homingMissilePrefab;
+    public TargetingSystem targetingSystem;
+    private enum MissileType { Normal, Homing }
+    private MissileType currentMissileType = MissileType.Normal;
+
+
     public float MoveForce;
     public float TurnTorque;
     public Rigidbody rocket;
@@ -69,9 +76,30 @@ public class Rocket : MonoBehaviour
 
         if (PauseMenu.isPaused) return; // Prevent shooting while paused
 
+        
         if (InputManager.Instance.IsShooting)
         {
-            Bullet.FireBullet(bulletPrefab, bulletSpawnRef, ShootForce);
+            if (currentMissileType == MissileType.Normal)
+            {
+                Bullet.FireBullet(normalMissilePrefab, bulletSpawnRef, ShootForce);
+            }
+            else if (currentMissileType == MissileType.Homing)
+            {
+                GameObject target = targetingSystem.GetLockedTarget();
+                if (target != null)
+                {
+                    GameObject missile = Instantiate(homingMissilePrefab, bulletSpawnRef.position, bulletSpawnRef.rotation);
+                    missile.GetComponent<HomingMissile>().SetTarget(target.transform);
+                }
+            }
         }
+
+        // Switch between normal and homing missiles
+        if (InputManager.Instance.SwitchWeapon)
+        {
+            currentMissileType = (currentMissileType == MissileType.Normal) ? MissileType.Homing : MissileType.Normal;
+            Debug.Log("Switched to: " + currentMissileType);
+        }
+
     }
 }
