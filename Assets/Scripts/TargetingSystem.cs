@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class TargetingSystem : MonoBehaviour
 {
+    public Rocket rocket; // Reference to the Rocket script
+
     public float lockTime = 3f;
     [SerializeField] private float lockAngle = 12f;   // Smaller cone, like 150px width
     [SerializeField] private float lockDistance = 50f;
@@ -13,27 +15,29 @@ public class TargetingSystem : MonoBehaviour
 
     void Update()
     {
-        currentTarget = FindAsteroidInFront();
+        if (!rocket.IsHomingMode()) return; // ✅ Check missile mode
 
-        if (currentTarget != null)
-        {
-            if (currentTarget == lockedTarget)
-            {
-                // Already locked
-                return;
-            }
+            currentTarget = FindAsteroidInFront();
 
-            lockTimer += Time.deltaTime;
-            if (lockTimer >= lockTime)
+            if (currentTarget != null)
             {
-                LockOn(currentTarget);
+                if (currentTarget == lockedTarget)
+                {
+                    return;
+                }
+
+                lockTimer += Time.deltaTime;
+                if (lockTimer >= lockTime)
+                {
+                    LockOn(currentTarget);
+                }
             }
-        }
-        else
-        {
-            ClearLock();
-        }
+            else
+            {
+                ClearLock();
+            }
     }
+
 
     GameObject FindAsteroidInFront()
     {

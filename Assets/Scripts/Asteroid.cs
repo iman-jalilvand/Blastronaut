@@ -6,7 +6,7 @@ public class Asteroid : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        if(other.gameObject.CompareTag("Bullet")) // Check if the asteroid is hit by a bullet
+        if(other.gameObject.CompareTag("Missile")) // Check if the asteroid is hit by a Missile
         {
             GameManager.Instance.AddScore(scoreValue); // Call the AddScore method from the GameManager
         }
@@ -20,5 +20,12 @@ public class Asteroid : MonoBehaviour
             }
             Destroy(gameObject); // Destroy asteroid on impact
         }
+    }
+
+    // ✅ Called by homing missile
+    public void TakeHit()
+    {
+        GameManager.Instance.AddScore(scoreValue);
+        Destroy(gameObject);
     }
 }
