@@ -72,7 +72,7 @@ public class HomingMissile : MonoBehaviour
             AudioManager.Instance.PlaySound(AudioManager.Instance.explosionClip);
         }
 
-        // ✅ Ask the asteroid to destroy itself and award score
+        // Ask the asteroid to destroy itself and award score
         if (target != null && target.CompareTag("Asteroid"))
         {
             Asteroid asteroid = target.GetComponent<Asteroid>();
