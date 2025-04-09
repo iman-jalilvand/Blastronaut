@@ -291,7 +291,7 @@ Transform:
   m_GameObject: {fileID: 115232331}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.70710677, z: 0.70710677, w: 0}
-  m_LocalPosition: {x: 0, y: 1.938, z: 0}
+  m_LocalPosition: {x: 0, y: 1.08, z: 0.511}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -730,7 +730,6 @@ MonoBehaviour:
   TurnTorque: 0.05
   rocket: {fileID: 270772634}
   bulletSpawnRef: {fileID: 115232332}
-  bulletPrefab: {fileID: 6484706493750862405, guid: d199936d8698b46079f63d69e6c663df, type: 3}
   ShootForce: 2
   flame: {fileID: 1500031036}
 --- !u!4 &270772631 stripped
@@ -816,6 +815,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a3cb200708344714bce979e21f30e8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rocket: {fileID: 270772630}
   lockTime: 3
   lockAngle: 12
   lockDistance: 50

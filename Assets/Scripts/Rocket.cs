@@ -13,7 +13,6 @@ public class Rocket : MonoBehaviour
     public float TurnTorque;
     public Rigidbody rocket;
     public Transform bulletSpawnRef;
-    public GameObject bulletPrefab;
     public float ShootForce;
     public GameObject flame;
 
@@ -22,6 +21,11 @@ public class Rocket : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public bool IsHomingMode()
+    {
+        return currentMissileType == MissileType.Homing;
     }
 
     void Update()
@@ -86,7 +90,7 @@ public class Rocket : MonoBehaviour
         {
             if (currentMissileType == MissileType.Normal)
             {
-                Bullet.FireBullet(normalMissilePrefab, bulletSpawnRef, ShootForce);
+                Bullet.FireMissile(normalMissilePrefab, bulletSpawnRef, ShootForce);
             }
             else if (currentMissileType == MissileType.Homing)
             {

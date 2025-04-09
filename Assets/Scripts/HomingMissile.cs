@@ -2,13 +2,24 @@ using UnityEngine;
 
 public class HomingMissile : MonoBehaviour
 {
-    public float speed = 15f;
-    public float rotateSpeed = 720f; // Degrees per second
-    [SerializeField] private float detectionRadius = 2f; // Explode when close enough
+    public float speed = 5f;
+    public float rotateSpeed = 500f; // Degrees per second
+    [SerializeField] private float detectionRadius = 0.1f; // Explode when close enough
 
     private Transform target;
     public GameObject explosionEffect;
 
+    void Start()
+    {
+        // Play missile engine sound (looping, 3D)
+        AudioSource audio = GetComponent<AudioSource>();
+        if (audio != null && !audio.isPlaying)
+        {
+            audio.Play();
+        }
+    }
+
+    
     public void SetTarget(Transform targetTransform)
     {
         target = targetTransform;
@@ -47,12 +58,33 @@ public class HomingMissile : MonoBehaviour
         }
     }
 
-    void Explode()
+    private void Explode()
     {
+        // Play explosion effect
         if (explosionEffect != null)
+        {
             Instantiate(explosionEffect, transform.position, transform.rotation);
+        }
 
-        Destroy(target.gameObject);
+        // Play explosion sound via AudioManager (same as normal missile)
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySound(AudioManager.Instance.explosionClip);
+        }
+
+        // ✅ Ask the asteroid to destroy itself and award score
+        if (target != null && target.CompareTag("Asteroid"))
+        {
+            Asteroid asteroid = target.GetComponent<Asteroid>();
+            if (asteroid != null)
+            {
+                asteroid.TakeHit(); // New method we'll create in Asteroid.cs
+            }
+        }
+
+        // Destroy the missile itself
         Destroy(gameObject);
     }
+
+
 }
