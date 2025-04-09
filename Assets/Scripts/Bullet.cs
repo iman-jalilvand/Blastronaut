@@ -43,6 +43,12 @@ public class Bullet : MonoBehaviour
         Rigidbody bulletRb = MISSILE.GetComponent<Rigidbody>();
         bulletRb.linearVelocity = rocketRb.linearVelocity + spawnPoint.forward * bulletSpeed;
 
+        // Align missile rotation with its velocity direction (for trail correctness)
+        //if (bulletRb.linearVelocity != Vector3.zero)
+        //{
+        //    MISSILE.transform.rotation = Quaternion.LookRotation(bulletRb.linearVelocity);
+        //}
+
         // Prevent collision between rocket and missile
         Collider rocketCol = rocketRb.GetComponent<Collider>();
         Collider bulletCol = MISSILE.GetComponent<Collider>();

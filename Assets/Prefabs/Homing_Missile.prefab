@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 4748492033048423964}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.02, y: 0.721, z: 0.037}
+  m_LocalPosition: {x: -0.87, y: 0.859, z: 0.801}
   m_LocalScale: {x: 0.020584485, y: 0.020584485, z: 0.01896428}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -212,7 +212,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.16835785
+        value: 0.49933624
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -263,7 +263,7 @@ TrailRenderer:
       m_NumAlphaKeys: 2
     numCornerVertices: 0
     numCapVertices: 0
-    alignment: 0
+    alignment: 1
     textureMode: 0
     textureScale: {x: 1, y: 1}
     shadowBias: 0.02

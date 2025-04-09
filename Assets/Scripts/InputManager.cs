@@ -14,7 +14,6 @@ public class InputManager : MonoBehaviour
     public bool IsShooting { get; private set; }
     public bool SwitchWeapon { get; private set; }
 
-
     private void Awake()
     {
         Instance = this; // Setup Singleton
