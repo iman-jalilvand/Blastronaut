@@ -16,6 +16,10 @@ public class Rocket : MonoBehaviour
     public float ShootForce;
     public GameObject flame;
 
+    [Header("Magnetic Pull Settings")]
+    public float magneticPullStrength = 0.05f; // How strong the pull is
+    public float magneticPullRadius = 20f;  // How close you have to be to feel the pull
+
     private bool isMoving = false; // To check if the rocket is moving
 
     void Start()
@@ -55,6 +59,9 @@ public class Rocket : MonoBehaviour
             rocket.AddForce(-transform.right * MoveForce);
             isMoving = true;
         }
+
+        // Magnetic pull effect
+        ApplyMagneticPull();
 
         // Enable flame effect when moving
         if (flame != null)
@@ -107,4 +114,34 @@ public class Rocket : MonoBehaviour
             }
         }
     }
+
+    private void ApplyMagneticPull()
+    {
+        GameObject[] magneticAsteroids = GameObject.FindGameObjectsWithTag("MagneticAsteroid");
+
+        foreach (GameObject asteroid in magneticAsteroids)
+        {
+            Vector3 directionToAsteroid = asteroid.transform.position - transform.position;
+            float distance = directionToAsteroid.magnitude;
+
+            if (distance < magneticPullRadius)
+            {
+                Vector3 pullDirection = directionToAsteroid.normalized;
+
+                float rocketSpeed = rocket.linearVelocity.magnitude;
+
+                // ✅ Always have a strong base magnetic pull
+                float basePullStrength = magneticPullStrength;
+
+                // ✅ Add extra pull if moving fast
+                float speedBonus = rocketSpeed * 0.1f;
+
+                float totalPullStrength = basePullStrength + speedBonus;
+
+                // Apply pull (constant base + bonus)
+                rocket.AddForce(pullDirection * (totalPullStrength / distance), ForceMode.Force);
+            }
+        }
+    }
+
 }
