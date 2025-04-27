@@ -4,8 +4,8 @@ public class AsteroidSpawner : MonoBehaviour
 {
     public GameObject[] asteroidPrefabs; // Array of different asteroid types
     public float spawnRate = 2f; // Time between spawns
-    public float spawnDistance = 30f; // Distance from the camera to spawn
-    public float asteroidSpeed = 5f; // Speed at which asteroids move
+    public float spawnDistance = 20f; // Distance from the camera to spawn
+    public float asteroidSpeed = 2.5f; // Speed at which asteroids move
 
     private float timer = 0f;
 

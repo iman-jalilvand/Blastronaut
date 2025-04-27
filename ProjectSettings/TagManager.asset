@@ -9,6 +9,7 @@ TagManager:
   - Rocket
   - homing_missile
   - Missile
+  - MagneticAsteroid
   layers:
   - Default
   - TransparentFX
