@@ -21,11 +21,15 @@ public class Bullet : MonoBehaviour
         // Destroy the bullet
         Destroy(gameObject);
 
-        // Destroy asteroid if hit
-        if (collision.gameObject.CompareTag("Asteroid"))
+        // Check if the bullet hit an asteroid
+        // If the bullet hit an asteroid or magnetic asteroid, add score and destroy it
+        Asteroid asteroid = collision.gameObject.GetComponent<Asteroid>();
+        if (asteroid != null)
         {
+            GameManager.Instance.AddScore(asteroid.scoreValue); // 🎯 Add score properly
             Destroy(collision.gameObject);
         }
+
     }
 
     /// <summary>

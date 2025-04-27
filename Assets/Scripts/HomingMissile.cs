@@ -72,15 +72,17 @@ public class HomingMissile : MonoBehaviour
             AudioManager.Instance.PlaySound(AudioManager.Instance.explosionClip);
         }
 
-        // Ask the asteroid to destroy itself and award score
-        if (target != null && target.CompareTag("Asteroid"))
+        // Check if the homing missile hit an asteroid
+        // If the homing missile hit an asteroid or magnetic asteroid, add score and destroy it
+        if (target != null)
         {
             Asteroid asteroid = target.GetComponent<Asteroid>();
             if (asteroid != null)
             {
-                asteroid.TakeHit(); // New method we'll create in Asteroid.cs
+                asteroid.TakeHit(); // Let asteroid handle its own death + scoring
             }
         }
+
 
         // Destroy the missile itself
         Destroy(gameObject);

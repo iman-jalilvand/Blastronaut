@@ -41,11 +41,18 @@ public class TargetingSystem : MonoBehaviour
 
     GameObject FindAsteroidInFront()
     {
-        GameObject[] asteroids = GameObject.FindGameObjectsWithTag("Asteroid");
+        GameObject[] normalAsteroids = GameObject.FindGameObjectsWithTag("Asteroid");
+        GameObject[] magneticAsteroids = GameObject.FindGameObjectsWithTag("MagneticAsteroid");
+
+        // Combine both
+        GameObject[] allAsteroids = new GameObject[normalAsteroids.Length + magneticAsteroids.Length];
+        normalAsteroids.CopyTo(allAsteroids, 0);
+        magneticAsteroids.CopyTo(allAsteroids, normalAsteroids.Length);
+
         GameObject best = null;
         float closestAngle = lockAngle;
 
-        foreach (var asteroid in asteroids)
+        foreach (var asteroid in allAsteroids)
         {
             Vector3 dir = asteroid.transform.position - transform.position;
             float angle = Vector3.Angle(transform.forward, dir);
@@ -59,6 +66,7 @@ public class TargetingSystem : MonoBehaviour
 
         return best;
     }
+
 
     void LockOn(GameObject target)
     {
