@@ -6,15 +6,20 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance; // Singleton instance
 
     [Header("Audio Sources")]
-    public AudioSource sfxSource; // For shooting and explosion sounds
+    public AudioSource sfxSource; // For shooting sound
     public AudioSource ambientSource; // For background music
     public AudioSource rocketSource; // For rocket engine sound
+    public AudioSource explosionSource; // 🔊 Dedicated explosion sound channel
+
 
     [Header("Audio Clips")]
     public AudioClip shootClip; // For shooting sound
     public AudioClip explosionClip; // For explosion sound
     public AudioClip ambientClip; // For background music
     public AudioClip rocketClip; // For rocket engine sound
+    public AudioClip lockOnClip;    // For lock-on sound
+
+
     
     private void Awake()
     {
@@ -46,11 +51,16 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySound(AudioClip clip)
     {
-        if (clip != null)
+        if (clip == explosionClip && explosionSource != null)
+        {
+            explosionSource.PlayOneShot(clip); // ✅ Use separate channel
+        }
+        else if (sfxSource != null)
         {
             sfxSource.PlayOneShot(clip);
         }
     }
+
     
     public void PlayMovementSound()
     {
@@ -69,4 +79,19 @@ public class AudioManager : MonoBehaviour
             rocketSource.Stop();
         }
     }
+
+    public void PlayLockOnSound()
+    {
+        if (lockOnClip != null)
+            sfxSource.PlayOneShot(lockOnClip);
+    }
+
+    public void StopLockOnSound()
+    {
+        if (sfxSource.isPlaying)
+        {
+            sfxSource.Stop();
+        }
+    }
+
 }

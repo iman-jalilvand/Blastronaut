@@ -819,8 +819,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rocket: {fileID: 270772630}
   lockTime: 3
-  lockAngle: 12
-  lockDistance: 50
+  lockAngle: 5
+  lockDistance: 40
+  lockBoxPrefab: {fileID: 8906795154743556302, guid: 832f267d5559446f1a1955ce12329113, type: 3}
+  canvas: {fileID: 474230821}
+  audioManager: {fileID: 1337550548}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1512,63 +1515,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &497860140
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2258532521568670584, guid: bf457956f50044f1e8fc92ae380ad171, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.2829
-      objectReference: {fileID: 0}
-    - target: {fileID: 2258532521568670584, guid: bf457956f50044f1e8fc92ae380ad171, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.899
-      objectReference: {fileID: 0}
-    - target: {fileID: 2258532521568670584, guid: bf457956f50044f1e8fc92ae380ad171, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -4.4753
-      objectReference: {fileID: 0}
-    - target: {fileID: 2258532521568670584, guid: bf457956f50044f1e8fc92ae380ad171, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2258532521568670584, guid: bf457956f50044f1e8fc92ae380ad171, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2258532521568670584, guid: bf457956f50044f1e8fc92ae380ad171, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2258532521568670584, guid: bf457956f50044f1e8fc92ae380ad171, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2258532521568670584, guid: bf457956f50044f1e8fc92ae380ad171, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2258532521568670584, guid: bf457956f50044f1e8fc92ae380ad171, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2258532521568670584, guid: bf457956f50044f1e8fc92ae380ad171, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8392565609465032284, guid: bf457956f50044f1e8fc92ae380ad171, type: 3}
-      propertyPath: m_Name
-      value: Asteroid_H
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: bf457956f50044f1e8fc92ae380ad171, type: 3}
 --- !u!1 &555616330
 GameObject:
   m_ObjectHideFlags: 0
@@ -2693,6 +2639,7 @@ MonoBehaviour:
   explosionClip: {fileID: 8300000, guid: ef8de71a2072a45ef9e02e1569f87e35, type: 3}
   ambientClip: {fileID: 8300000, guid: 49bbdca5ef77e4bc6b70099210a5f6fe, type: 3}
   rocketClip: {fileID: 8300000, guid: 7ad3a3dbbd0a84dc4afb304d3272837c, type: 3}
+  lockOnClip: {fileID: 8300000, guid: 44268b0c22d7b4f879f701a2c8c9c19f, type: 3}
 --- !u!4 &1337550549
 Transform:
   m_ObjectHideFlags: 0
@@ -8326,4 +8273,3 @@ SceneRoots:
   - {fileID: 441742029}
   - {fileID: 479490877}
   - {fileID: 1262126878}
-  - {fileID: 497860140}
