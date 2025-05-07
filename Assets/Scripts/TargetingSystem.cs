@@ -35,7 +35,15 @@ public class TargetingSystem : MonoBehaviour
         }
 
         // Only operate targeting in homing mode
-        if (!rocket.IsHomingMode()) return;
+        if (!rocket.IsHomingMode())
+        {
+            // Cancel everything if homing mode is OFF
+            if (audioManager != null)
+                audioManager.StopLockOnSound();
+
+            ClearLock(); // Destroys red box, resets timers, etc.
+            return;
+        }
 
         currentTarget = FindAsteroidInFront();
 
